@@ -70,3 +70,44 @@ pnpm dev
 ```
 * La probable ruta puede ser: `http://localhost:5173/``
 6. Navegamos a la ruta sugerida con cualquier browser.
+
+## 02. Clean up Vite files
+1. Empezamos con el archivo **style.css**, borrar todo excepto lo
+relacionado con el `:root`.
+2. Del `:root`, solo dejamos la línea de `font-family:`.
+3. del archivo **main.js**, borrar todo menos la primera línea de
+`import './style.css'`.
+4. Borro los archivos:
+  * **javascript.svg**
+  * **counter.js**
+5. Del archivo **index.html**, borramos la línea de 
+`<div id="app"></div>`
+
+>[!TIP]  
+>### ESLint mejorador de javascript
+>1. Tener instalado de forma global el `eslint`, con el comando:
+>```bash
+>npm install -g eslint
+>```
+>* **Esto solo se hace una vez y toca con el comando `npm`.**
+>2. Instalar para el proyecto el paquete `standard`:
+>```bash
+>pnpm install standard -D
+>```
+>3. Crear el archivo **.eslintrc.json**, con este contenido:
+>```json
+> {
+> 	"extends": ["standard"],
+>   "rules": {
+>     "semi" : [2, "always"],
+>     "comma-dangle": [2, "always-multiline"] 
+>   }
+> }
+>```
+>4. Presiono en `Visual Studio Code` las teclas: 
+> [`Ctrl`] + [`Shift`] + [`P`]  
+> y selecciono o busco `Restart ESLint Server`
+
+>[!TIP]  
+>### Si por alguna razón aparece el archivo **package-lock.json**, por favor borrarlo.  
+>### Pues se supone estamos trabajando con `pnpm`.
