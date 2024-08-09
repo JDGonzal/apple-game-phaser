@@ -1,2 +1,72 @@
-# apple-game-phaser
-https://www.youtube.com/watch?v=0qtg-9M3peI
+# APPLE-GAME-PHASER
+Basado en este video:  
+[![Phaser Tutorial | Make Your First 2D JavaScript Game](images/2024-08-08_183030.PNG "Phaser Tutorial | Make Your First 2D JavaScript Game")](https://www.youtube.com/watch?v=0qtg-9M3peI)
+>[!IMPORTANT] 
+> * El código original está en este repositorio: 
+>[Phaser-Apple-Catcher-Starter
+](https://github.com/digitaldeja0/Phaser-Apple-Catcher-Starter)  
+>del usuario [digitaldeja0](https://github.com/digitaldeja0) 
+>desde Agosto 11 de 2023.
+> * La librería base esta en este sitio: 
+>[PHASER](https://phaser.io/).
+> * Esta es una guía para empezar:
+[Cómo crear tu primer juego con Phaser](https://phaser.io/tutorials/making-your-first-phaser-3-game-spanish#:~:text=Para%20iniciar%20un%20juego%20en,menudo%20desde%20una%20variable%20global.).
+
+## 00 Precondiciones
+1. Tener el Editor [Visual Studio Code](https://code.visualstudio.com/insiders/).
+2. Extensiones insaladas dentro de 
+`Visual Studio Code`:  
+  * [Better Comments](https://marketplace.visualstudio.com/items?itemName=aaron-bond.better-comments) 
+de [Aaron Bond](https://aaronbond.co.uk/).
+  * [Error Lens](https://marketplace.visualstudio.com/items?itemName=usernamehw.errorlens) 
+de [Alexander](https://marketplace.visualstudio.com/publishers/usernamehw).
+  * [Javascript-Essentials](https://marketplace.visualstudio.com/items?itemName=Gydunhn.javascript-essentials)
+  de [Gydunhn](https://marketplace.visualstudio.com/publishers/Gydunhn),  
+  Este instala un paquete con:
+    * ESLint
+    * npm Intellisense 
+    * IntelliCode
+    * JavaScript (ES6) code snippets
+    * Debugger for Firefox
+    * Path Intellisense
+    * Formatting Toggle
+  * [Live Server](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer)
+  de [Ritwick Dey](https://marketplace.visualstudio.com/publishers/ritwickdey).
+  * [Image preview](https://marketplace.visualstudio.com/items?itemName=kisstkondoros.vscode-gutter-preview)
+  de [Kiss Tamás](https://marketplace.visualstudio.com/publishers/kisstkondoros) 
+3. Instalar `nvm` descargando el instalador desde este sitio:
+[nvm-setup.exe](https://github.com/coreybutler/nvm-windows/releases/download/1.1.12/nvm-setup.exe).
+4. Instalar el `node`, que a su vez
+trae el `npm` basado en este sitio: 
+[Instalar múltiples versiones de Node.js en Windows](https://rafaelneto.dev/blog/instalar-multiples-versiones-nodejs-windows/).  
+Con el `nvm` permite múltiples versiones
+del `node`.
+5. El programa `pnpm` es similar al `npm`, siendo un mejor empaquetador.  
+Este lo puede conseguir con las instrucciones de este sitio
+[pnpm Installation](https://pnpm.io/installation). 
+
+## 01. Local Setup
+1. Abrir una nueva `TERMINAL` y ejecutar el comando:
+```bash
+pnpm create vite@latest
+```
+* Project name: applegame
+* Vanilla
+* JavaScript
+2. Pasamos el contenido de la carpeta "applegame" a la raiz del proyecto y borramos la carpeta "applegame", este es el resultado
+esperado:  
+![](images/2024-08-08_185423.png)
+3. Ejecutamos el comando en la `TERMINAL`:
+```bash
+pnpm install
+```
+4. Ejecutamos el comando en la `TERMINAL`:
+```bash
+pnpm i phaser
+```
+5. Ejecutamos el proyecto en la `TERMINAL` con:
+```bash
+pnpm dev
+```
+* La probable ruta puede ser: `http://localhost:5173/``
+6. Navegamos a la ruta sugerida con cualquier browser.
