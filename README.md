@@ -111,3 +111,11 @@ relacionado con el `:root`.
 >[!TIP]  
 >### Si por alguna razón aparece el archivo **package-lock.json**, por favor borrarlo.  
 >### Pues se supone estamos trabajando con `pnpm`.
+
+## 03. Github Assets
+1. Bajar del repositorio los [assets](https://github.com/digitaldeja0/Phaser-Apple-Catcher-Starter/tree/main/public/assets)
+y poner esa carpeta en la carpeta "public".
+2. Aprovechamos para borra el archivo **vite.svg** de la 
+carpeta "public".
+3. Así debe lucir hasta el momento nuestro proyecto:  
+![proyecto-03](images/2024-08-09_165759.png)
