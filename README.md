@@ -97,7 +97,7 @@ relacionado con el `:root`.
 >3. Crear el archivo **.eslintrc.json**, con este contenido:
 >```json
 > {
-> 	"extends": ["standard"],
+>   "extends": ["standard"],
 >   "rules": {
 >     "semi" : [2, "always"],
 >     "comma-dangle": [2, "always-multiline"] 
@@ -119,3 +119,24 @@ y poner esa carpeta en la carpeta "public".
 carpeta "public".
 3. Así debe lucir hasta el momento nuestro proyecto:  
 ![proyecto-03](images/2024-08-09_165759.png)
+
+## 04. HTML Setup
+1. Este capítulo es solo en el archivo **index.html**:
+2. Cambiamos en la opción `"icon"` el `"/vite.svg"`, por 
+`"/assets/favicon.ico"`
+3. El `<title>`, lo cambiamos a `Apple Catcher`.
+4. Al `<body>`, le agregamos tres elementos: `<header>`, `<main>` y
+`<footer>`, todos antes del `<script ...">`.
+5. Dentro del `<header>` , ponemos un `<p>`, con esto:
+```html
+      <p>Phaser Demo | Apple Catcher</p>
+```
+6. Dentro del `<footer>`, ponemos un `<p>`, con esto:
+```html
+      <p>Practicado por @JDGonzal <br>
+        Colaboración @alquimiasoftwarecol</p>
+```
+7. En el `<main>` agrego un `<canvas>`, con esto:
+```html
+      <canvas id="gameCanvas"></canvas>
+```
