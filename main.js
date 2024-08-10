@@ -8,6 +8,17 @@ const sizes = {
 
 const speedDown = 300;
 
+class GameScene extends Phaser.Scene {
+  constructor () {
+    super('scene-game');
+  }
+
+  // Definimos tres funciones principales:
+  preload () {} // Precarga cada elemento
+  create () {} // Lo crea en el juego y muestra en pantalla
+  update () {} // Se ejecuta cada segundo en el juego
+}
+
 const config = {
   type: Phaser.WEBGL,
   width: sizes.width,
@@ -19,7 +30,7 @@ const config = {
     gravity: { y: speedDown },
     debug: true,
   },
-  scene: [gameScene],
+  scene: [GameScene], // Depende de la `class` definida
 };
 
 const game = new Phaser.Game(config);
