@@ -6,12 +6,18 @@ const sizes = {
   height: 500,
 };
 
+const speedDown = 300;
+
 const config = {
   type: Phaser.WEBGL,
   width: sizes.width,
   height: sizes.height,
   // eslint-disable-next-line no-undef
   canvas: gameCanvas, // <canvas id="gameCanvas"></canvas>
+  physics: {
+    default: 'arcade',
+    gravity: { y: speedDown },
+  },
 };
 
 const game = new Phaser.Game(config);
