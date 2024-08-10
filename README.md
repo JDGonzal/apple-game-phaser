@@ -140,3 +140,68 @@ carpeta "public".
 ```html
       <canvas id="gameCanvas"></canvas>
 ```
+
+## 05. CSS Setup
+1. Este capítulo es solo en el archivo **style.css**:
+2. Creamos tres variables dentro del `:root` :
+```css
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  --dkClr : #181818;    /*Dark Color */
+  --liClr: whitesmoke;  /*Light Color */
+  --accClr: #0D0D35;    /*Accent Color */
+}
+```
+3. Debajo del `:root` , definimos esto para todo, con un 
+asterisco:
+```css
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+```
+4. Añadimos el porcentaje de altura para `html` y `body`:
+```css
+html, body {
+  height: 100%;
+}
+```
+5. Esto solo para el `body`:
+```css
+body {
+  background-color: var(--dkClr);
+  color: var(--liClr);
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+```
+6. Definimos esto para `header` y `footer`:
+```css
+header, footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 20px;
+}
+```
+7. Para solo `main` esto:
+```css
+main{
+  flex: 1;
+  display: flex;
+}
+```
+8. Para el id de `gameCanvas`, definimos esto:
+```css
+#gameCanvas {
+  border: 1px solid red;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  z-index: 1;
+}
+```
