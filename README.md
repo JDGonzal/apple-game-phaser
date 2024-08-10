@@ -205,3 +205,31 @@ main{
   z-index: 1;
 }
 ```
+
+## 06. JS Setup
+1. Este capítulo es solo en el archivo **main.js**:
+2. Importamos `Phaser`:
+```js
+import Phaser from 'phaser';
+```
+3. Predefinimos los tamaños en una `const`, llamada `sizes`:
+```js
+const sizes = {
+  width: 500,
+  height: 500,
+};
+```
+4. Definimos una `const` llamada `config` que es un objeto:
+```js
+const config = {
+  type: Phaser.WEBGL,
+  width: sizes.width,
+  height: sizes.height,
+  // eslint-disable-next-line no-undef
+  canvas: gameCanvas, // <canvas id="gameCanvas"></canvas>
+};
+```
+5. Instanciamos en una `const` llamada `game` lo siguiente:
+```js
+const game= new Phaser.Game(config);
+```
