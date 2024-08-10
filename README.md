@@ -234,3 +234,19 @@ const config = {
 ```js
 const game= new Phaser.Game(config);
 ```
+
+## 07. Adding Physics to Scene
+1. Predefinimos unas `const` en **main.js**:
+```js
+const speedDown = 300;
+```
+2. En el archivo **main.js**, dentro del `config` y debajo de
+ `canvas:`, añadimos las `physics:`:
+```js
+  physics: {
+    default: 'arcade',
+    gravity: { y: speedDown },
+    debug: true,
+  },
+  scene: [gameScene],
+```
