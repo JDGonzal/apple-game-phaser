@@ -208,6 +208,7 @@ main{
 
 ## 06. JS Setup
 1. Este capítulo es solo en el archivo **main.js**:
+
 2. Importamos `Phaser`:
 ```js
 import Phaser from 'phaser';
