@@ -250,3 +250,22 @@ const speedDown = 300;
   },
   scene: [gameScene],
 ```
+
+## 08. Creating Phaser Scene
+1. Debajo de `const speedDown` en el archivo **main.js**, dentañadimos una `class`:
+```js
+class GameScene extends Phaser.Scene {
+  constructor () {
+    super('scene-game');
+  }
+
+  // Definimos tres funciones principales:
+  preload () {} // Precarga cada elemento
+  create () {} // Lo crea en el juego y muestra en pantalla
+  update () {} // Se ejecuta cada segundo en el juego
+}
+```
+2. Corrijo en el `config` el valor para `scene`, ya que depende
+de una `class`, esta se escribe la primera en mayúscula:  
+`scene: [GameScene],`
+ 
