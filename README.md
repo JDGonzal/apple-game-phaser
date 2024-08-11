@@ -243,16 +243,20 @@ const speedDown = 300;
 2. En el archivo **main.js**, dentro del `config` y debajo de
  `canvas:`, añadimos las `physics:`:
 ```js
+const config = {
+  ...
   physics: {
     default: 'arcade',
     gravity: { y: speedDown },
     debug: true,
   },
   scene: [gameScene],
+};
 ```
 
 ## 08. Creating Phaser Scene
-1. Debajo de `const speedDown` en el archivo **main.js**, dentañadimos una `class`:
+1. Debajo de `const speedDown` en el archivo **main.js**, 
+añadimos una `class` llamada `GameScene`:
 ```js
 class GameScene extends Phaser.Scene {
   constructor () {
@@ -270,44 +274,47 @@ de una `class`, esta se escribe la primera en mayúscula:
 `scene: [GameScene],`
 
 ## 09. Adding background images
-1. Creamos un archivo llamado **preload.js**, con una exportación,
-dentro de una carpeta llamada "phaser-js"
-de una función:
+1. Creamos la carpeta "phaser-js" en la raíz del proyecto.
+2. Creamos un archivo llamado **preload.js** dentro de la carpeta 
+"phaser-js" y con una exportación de la función `preloadGame`:
 ```js
 export function preloadGame (game) {
 
 }
 ```
-2. En el archivo **main.js**, simplemente importo la función
+3. En el archivo **main.js**, simplemente importo la función
 `preloadGame`.
 ```js
 import { preloadGame } from './phaser-js/preload.js';
 ```
-3. La llamo en la función que ya existe en la clase `GameScene`:
+4. La llamo en la función que ya existe en la clase `GameScene`:
 ```js
   preload () { preloadGame(this); }
 ```
-4. Escribo en **preload.js**, la carga de una imagen con este 
+5. Escribo en **preload.js**, la carga de una imagen con este 
 código:
 ```js
   game.load.image('bg', '../assets/bg.png');
 ```
-5. Creamos un archivo llamado **create.js**, con una exportación,
-dentro de una carpeta llamada "phaser-js"
-de una función:
+6. Creamos un archivo llamado **create.js** dentro de la carpeta 
+"phaser-js" y con una exportación de la función `createGame`:
 ```js
-export function createdGame (game) {
+export function createGame (game) {
 
 }
 ```
-6. En el archivo **main.js**, simplemente importo la función
-`preloadGame`.
+7. En el archivo **main.js**, simplemente importo la función
+`createGame`.
 ```js
 import { createGame } from './phaser-js/create.js';
 ```
-7. La llamo en la función que ya existe en la clase `GameScene`:
+8. La llamo en la función que ya existe en la clase `GameScene`:
 ```js
   create () { createGame(this); } 
+```
+9. Escribo en **create.js**, el mostrar la imagen con este código:
+```js
+  game.add.image(0, 0, 'bg');
 ```
 
 >[!CAUTION]  
@@ -315,14 +322,97 @@ import { createGame } from './phaser-js/create.js';
 >![](images/2024-08-10_185914.png)
 >
 >**¿Porqué se ve la imagen tan desubicada?**  
->Es porque por defecto las imagenes las toma en el punto medio.
+>Por defecto las imágenes las toma en el punto medio.  
 >Para corregir debemos indicar el origen de la imagen y esto se
 >hace añadiendo `.setOrigin` al momento de ponerla en pantalla,
->es decir al momento del `create`.
+>es decir en la función `createGame`.
 
-8. En el archivo **create.js**, adicionamos a la imagen `bg` el
+10. En el archivo **create.js**, adicionamos a la imagen `bg` el
 `.setOrigin`:
 ```js
   game.add.image(0, 0, 'bg')
     .setOrigin(0, 0); // setOrigin, indica el inicio de la imagen
+```
+
+
+## 10. Adding Player Sprite
+1. En el archivo **preload.js**, cargo la imagen de la canasta:
+```js
+  game.load.image('basket', '/assets/basket.png');
+```
+2. En el archivo **create.js**, muestro la `basket` en pantalla:
+```js
+  game.add.image(0, 400, 'basket')
+    .setOrigin(0, 0);
+```
+3. En el archivo **main.js**, dentro del `constructor` añadimos
+la variable `this.player`;
+4. De regreso al archivo **create.js**, asignamos lo de la imagen
+`basket` a la variable `player` (El `this` allí adentro cambia por
+el `game`). 
+5. Se sugiere cambiar el número fijo de `400`, por el valor de la
+altura (`height`) del juego menos `100`:
+```js
+  const { height } = game.textures.game.config;
+  game.player = game.add.image(0, height - 100, 'basket')
+    .setOrigin(0, 0);
+```
+6. Adicionamos las `physics` a la imagen `basket` en el archivo
+**create.js**:
+```js
+  game.player = game.physics.add.image(0, height - 100, 'basket')
+    .setOrigin(0, 0);
+```
+
+>[!CAUTION]  
+>Acabo de encontrar un error en el código, dado que la `basket` al
+>adicionarle la parte de `physics` debería caer.  
+> Esto se debe a la mala definición de las `physics` en el `config`
+> de **main.js**:
+>* **Antes de la corrección:**
+>```diff
+>const config = {
+>  ...
+>  physics: {
+>    default: 'arcade',
+>-    gravity: { y: speedDown },
+>-    debug: true,
+>  },
+>  scene: [GameScene], // Depende de la `class` definida
+>};
+>```
+>* **La corrección sería:**
+> ```js
+>const config = {
+>  ...
+>  physics: {
+>    default: 'arcade',
+>    arcade: {
+>      gravity: { y: speedDown },
+>      debug: true,
+>    },
+>  },
+>  scene: [GameScene], // Depende de la `class` definida
+>};
+>``` 
+
+7. Para evitar la caida de la `basket`, se pone este código en
+el archivo **create.js**, justo debajo de `game.player = `:
+```js
+  game.player.setImmovable(true);
+  game.player.body.allowGravity = false;
+```
+8. Mejoro en **preload.js**, la definición de las imágenes a
+precargar:
+```js
+const INIT_IMAGES = [
+  { key: 'bg', path: '/assets/bg.png' },
+  { key: 'basket', path: '/assets/basket.png' },
+];
+
+export function preloadGame ({ load }) {
+  INIT_IMAGES.forEach(({ key, path }) => {
+    load.image(key, path);
+  });
+}
 ```

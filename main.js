@@ -13,6 +13,8 @@ const speedDown = 300;
 class GameScene extends Phaser.Scene {
   constructor () {
     super('scene-game');
+    // eslint-disable-next-line no-unused-expressions
+    this.player;
   }
 
   // Definimos tres funciones principales:
@@ -29,8 +31,10 @@ const config = {
   canvas: gameCanvas, // <canvas id="gameCanvas"></canvas>
   physics: {
     default: 'arcade',
-    gravity: { y: speedDown },
-    debug: true,
+    arcade: {
+      gravity: { y: speedDown },
+      debug: true,
+    },
   },
   scene: [GameScene], // Depende de la `class` definida
 };
