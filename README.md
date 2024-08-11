@@ -489,3 +489,18 @@ debajo de `game.target =`, ponemos este código:
 ```js
   game.target.setMaxVelocity(0, game.playerSpeed - 50);
 ```
+
+## 13. Random Spawning
+1. En el archivo **update.js**, creamos una función con el nombre
+`getRandomX`:
+```js
+function getRandomX() {
+  return Math.floor(Math.random() * 480);
+}
+```
+2. Llamamos esta función en el **update.js**, justo depués de
+`game.target.setY(0);`, aparece arriba de forma aleatoria en el 
+eje `x`:
+```js
+    game.target.setX(getRandomX());
+```
