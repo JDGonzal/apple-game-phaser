@@ -1,5 +1,7 @@
 import './style.css';
 import Phaser from 'phaser';
+import { preloadGame } from './phaser-js/preload.js';
+import { createGame } from './phaser-js/create.js';
 
 const sizes = {
   width: 500,
@@ -14,8 +16,8 @@ class GameScene extends Phaser.Scene {
   }
 
   // Definimos tres funciones principales:
-  preload () {} // Precarga cada elemento
-  create () {} // Lo crea en el juego y muestra en pantalla
+  preload () { preloadGame(this); } // Precarga cada elemento
+  create () { createGame(this); } // Lo crea en el juego y muestra en pantalla
   update () {} // Se ejecuta cada segundo en el juego
 }
 

@@ -268,4 +268,61 @@ class GameScene extends Phaser.Scene {
 2. Corrijo en el `config` el valor para `scene`, ya que depende
 de una `class`, esta se escribe la primera en mayúscula:  
 `scene: [GameScene],`
- 
+
+## 09. Adding background images
+1. Creamos un archivo llamado **preload.js**, con una exportación,
+dentro de una carpeta llamada "phaser-js"
+de una función:
+```js
+export function preloadGame (game) {
+
+}
+```
+2. En el archivo **main.js**, simplemente importo la función
+`preloadGame`.
+```js
+import { preloadGame } from './phaser-js/preload.js';
+```
+3. La llamo en la función que ya existe en la clase `GameScene`:
+```js
+  preload () { preloadGame(this); }
+```
+4. Escribo en **preload.js**, la carga de una imagen con este 
+código:
+```js
+  game.load.image('bg', '../assets/bg.png');
+```
+5. Creamos un archivo llamado **create.js**, con una exportación,
+dentro de una carpeta llamada "phaser-js"
+de una función:
+```js
+export function createdGame (game) {
+
+}
+```
+6. En el archivo **main.js**, simplemente importo la función
+`preloadGame`.
+```js
+import { createGame } from './phaser-js/create.js';
+```
+7. La llamo en la función que ya existe en la clase `GameScene`:
+```js
+  create () { createGame(this); } 
+```
+
+>[!CAUTION]  
+> Así se ve la presentación en un browser, hasta el momento:  
+>![](images/2024-08-10_185914.png)
+>
+>**¿Porqué se ve la imagen tan desubicada?**  
+>Es porque por defecto las imagenes las toma en el punto medio.
+>Para corregir debemos indicar el origen de la imagen y esto se
+>hace añadiendo `.setOrigin` al momento de ponerla en pantalla,
+>es decir al momento del `create`.
+
+8. En el archivo **create.js**, adicionamos a la imagen `bg` el
+`.setOrigin`:
+```js
+  game.add.image(0, 0, 'bg')
+    .setOrigin(0, 0); // setOrigin, indica el inicio de la imagen
+```
