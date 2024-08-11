@@ -416,3 +416,45 @@ export function preloadGame ({ load }) {
   });
 }
 ```
+
+## 11. Player Controls
+1. En el archivo **main.js**, en el `constructor` de `GameScene`
+ponemos dos elementos:
+```js
+    this.cursor;
+    this.playerSpeed = speedDown + 50;
+```
+2. En el archivo **create.js**, asignamos a `cursor` el valor
+de `createCursorKeys()`:
+```js
+  game.cursor = game.input.keyboard.createCursorKeys();
+```
+3. Creamos el archivo **update.js**, con la función a exportar
+llamada `updateGame`, en la carpeta "phaser-js":
+```js
+export function updateGame (game) {
+
+}
+``` 
+4. Importamos en **main.js**:  
+`import { updateGame } from './phaser-js/update.js';`
+5. Hacemos el llamado a la función en el `update () {}`.
+6. En el archivo **update.js**, ponemos este código:
+```js
+export function updateGame (game) {
+  const { left, right } = game.cursor;
+
+  if (left.isDown) {
+    game.player.setVelocityX(-game.playerSpeed);
+  } else if (right.isDown) {
+    game.player.setVelocityX(game.playerSpeed);
+  } else {
+    game.player.setVelocityX(0);
+  }
+}
+```
+7. Ponemos límites al mundo donde se juega con este comando en
+el archivo **create.js**:
+```js
+  game.player.setCollideWorldBounds(true);
+```

@@ -6,4 +6,9 @@ export function createGame (game) {
     .setOrigin(0, 0);
   game.player.setImmovable(true);
   game.player.body.allowGravity = false;
+  game.player.setCollideWorldBounds(true);
+
+  game.cursor = game.input.keyboard.createCursorKeys();
+
+  console.log(game);
 }
