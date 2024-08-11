@@ -459,3 +459,33 @@ el archivo **create.js**:
 ```js
   game.player.setCollideWorldBounds(true);
 ```
+
+## 12. Adding Target
+1. Creamos otra variable en el `constructor` de la clase de nombre
+`GameScene`, en el archivo **main.js**:  
+`this.target;`
+2. En el archivo **preload.js** precargamos la imagen de la manzana:
+```js
+  { key: 'apple', path: '/assets/apple.png' },
+```
+3. En el archivo **create**, hacemos que la imagen aparezca:
+```js
+  game.target = game.physics.add.image(0, 0, 'apple')
+    .setOrigin(0, 0);
+```
+* Vemos que la `apple` aparece arriba y se cae.
+4. En el archivo **update.js**, hacemos que cuando la manzana 
+caiga, vuelva a aparecer arriba:
+```js
+  const { height } = game.textures.game.config;
+
+  if (game.target.y >= height) {
+    game.target.setY(0);
+  }
+```
+* Esto hace la `apple` acelere y se mueva cada vez mas rápido.
+5. Mantener una velocidad constante, en el archivo **create.js** 
+debajo de `game.target =`, ponemos este código:
+```js
+  game.target.setMaxVelocity(0, game.playerSpeed - 50);
+```
