@@ -15,7 +15,7 @@ class GameScene extends Phaser.Scene {
   constructor () {
     super('scene-game');
     // eslint-disable-next-line no-unused-expressions
-    this.player; this.cursor;
+    this.player; this.cursor; this.target;
     this.playerSpeed = speedDown + 50;
   }
 
