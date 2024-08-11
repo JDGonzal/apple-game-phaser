@@ -430,7 +430,7 @@ de `createCursorKeys()`:
   game.cursor = game.input.keyboard.createCursorKeys();
 ```
 3. Creamos el archivo **update.js**, con la función a exportar
-llamada `updateGame`, en la carpeta "phaser-js":
+de nombre `updateGame`, en la carpeta "phaser-js":
 ```js
 export function updateGame (game) {
 
@@ -438,7 +438,8 @@ export function updateGame (game) {
 ``` 
 4. Importamos en **main.js**:  
 `import { updateGame } from './phaser-js/update.js';`
-5. Hacemos el llamado a la función en el `update () {}`.
+5. Hacemos el llamado a la función `updateGame` en el 
+`update () {}`.
 6. En el archivo **update.js**, ponemos este código:
 ```js
 export function updateGame (game) {
