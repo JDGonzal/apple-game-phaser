@@ -1,4 +1,4 @@
-import { getRandomX } from './utils.js';
+import { getRandomX, gameOver } from './utils.js';
 
 export function createGame (game) {
   function targetHit () {
@@ -42,6 +42,8 @@ export function createGame (game) {
     font: '25px Arial',
     fill: '#000000',
   });
+
+  game.timedEvent = game.time.delayedCall(10000, gameOver, [], game);
 
   console.log(game);
 }
