@@ -17,6 +17,7 @@ class GameScene extends Phaser.Scene {
     // eslint-disable-next-line no-unused-expressions
     this.player; this.cursor; this.target;
     this.playerSpeed = speedDown + 50;
+    this.points = 0;
   }
 
   // Definimos tres funciones principales:
@@ -41,4 +42,5 @@ const config = {
   scene: [GameScene], // Depende de la `class` definida
 };
 
+// eslint-disable-next-line no-unused-vars
 const game = new Phaser.Game(config);

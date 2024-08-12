@@ -1,6 +1,4 @@
-function getRandomX () {
-  return Math.floor(Math.random() * 480);
-}
+import { getRandomX } from './utils.js';
 
 export function updateGame (game) {
   const { left, right } = game.cursor;

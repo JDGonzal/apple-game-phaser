@@ -504,3 +504,33 @@ eje `x`:
 ```js
     game.target.setX(getRandomX());
 ```
+
+## 14. Collision Detection
+1. Creamos una variable de nombre `points` en el `constructor` de
+la clase `GameScene` del archivo **main.js**:  
+`this.points = 0;`
+2. Creo un archivo en la carpeta "phaser-js", de nombre **utils.js**. Pasando la función de **update.js**, de nombre 
+`getRandomX` y la exportamos:
+```js
+export function getRandomX () {
+  return Math.floor(Math.random() * 480);
+}
+
+```
+3. Importamos el método `getRandomX`, en los archivos 
+**create.js** y **update.js**.
+4. Creo la función de nombre `targetHit(game)` en el archivo 
+**create.js**, y dentro de la función `createGame` con esto:
+```js
+  function targetHit () {
+    game.target.setY(0); // La `apple` reaparece arriba
+    game.target.setX(getRandomX()); // `apple` de forma aleatoria
+    game.points++;
+    console.log(game.points);
+  }
+```
+5. En el archivo **create.js**, generamos una colisión de tipo
+`overlap`, justo debajo de `game.target.setMaxVelocity`:
+```js
+  game.physics.add.overlap(game.target, game.player, targetHit, null, game); // Colisión entre la `apple` y la `basket`
+```
