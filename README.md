@@ -534,3 +534,16 @@ export function getRandomX () {
 ```js
   game.physics.add.overlap(game.target, game.player, targetHit, null, game); // Colisión entre la `apple` y la `basket`
 ```
+
+## 15. Updating Hitbox Size
+1. A la `basket`, le definimos un tamaño, en el archivo 
+**create.js** y un `offset`:
+```js
+  game.player.setSize(80, 15).setOffset(10, 70);
+```
+2. Hacemos lo mismo pero con algunas formúlas matemáticas:
+```js
+  const { width: wB, height: hB } = game.player; // tamaño de la `basket`
+  game.player.setSize(wB * 3 / 4, hB / 6)
+    .setOffset(wB / 10, hB * 9 / 10);
+```
