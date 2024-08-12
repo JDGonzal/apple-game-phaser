@@ -26,6 +26,7 @@ class GameScene extends Phaser.Scene {
     this.coinMusic = null;
     this.bgMusic = null;
     this.gameOver = false;
+    this.emitter = null;
   }
 
   // Definimos tres funciones principales:

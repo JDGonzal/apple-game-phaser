@@ -7,6 +7,7 @@ export function createGame (game) {
     game.points++;
     game.textScore.setText(`Score:${game.points}`);
     game.coinMusic.play();
+    game.emitter.start();
   }
 
   game.coinMusic = game.sound.add('coin');
@@ -49,6 +50,15 @@ export function createGame (game) {
   });
 
   game.timedEvent = game.time.delayedCall(10000, gameOver, [], game);
+
+  game.emitter = game.add.particles(0, 0, 'money', {
+    speed: 100,
+    gravityY: game.playerSpeed - 250,
+    scale: 0.04,
+    duration: 100,
+    emitting: false,
+  });
+  game.emitter.startFollow(game.player, wB / 2, hB / 2);
 
   console.log(game);
 }

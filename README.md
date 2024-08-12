@@ -668,3 +668,32 @@ de obtener elementos del `game`, ponemos esta condicional:
     return;
   }
 ```
+
+## 19. Particles Systems
+1. Creamos en el `constructor` de **main.js**, una variable
+de nombre `emitter`.
+2. Precargamos en **preload.js**, el valor de `money`:
+```js
+  { key: 'money', path: '/assets/money.png' },
+```
+3. En el archivo **create.js**, definimos la variable
+`emitter` con `money`:
+```js
+  game.emitter = game.add.particles(0, 0, 'money',{
+    speed: 100,
+    gravityY: game.playerSpeed - 250,
+    scale: 0.04,
+    duration: 100,
+    emitting: false,
+  });
+```
+3. En el archivo **create.js** en la función `targetHit`
+Llamamos ese `emitter`:
+```js
+    game.emitter.start();
+```
+4. Justo debajo de la definición de `emitter`, ponemos un 
+`startFollow`:
+```js
+  game.emitter.startFollow(game.player, wB / 2, hB / 2);
+```
