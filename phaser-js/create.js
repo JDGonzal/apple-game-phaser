@@ -16,6 +16,9 @@ export function createGame (game) {
   game.player.setImmovable(true);
   game.player.body.allowGravity = false;
   game.player.setCollideWorldBounds(true);
+  const { width: wB, height: hB } = game.player; // tamaño de la `basket`
+  game.player.setSize(wB * 3 / 4, hB / 6)
+    .setOffset(wB / 10, hB * 9 / 10);
 
   game.target = game.physics.add.image(0, 0, 'apple')
     .setOrigin(0, 0);
