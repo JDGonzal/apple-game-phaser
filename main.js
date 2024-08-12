@@ -14,10 +14,13 @@ const speedDown = 300;
 class GameScene extends Phaser.Scene {
   constructor () {
     super('scene-game');
-    // eslint-disable-next-line no-unused-expressions
-    this.player; this.cursor; this.target;
+    this.player = null;
+    this.cursor = null;
     this.playerSpeed = speedDown + 50;
+    this.target = null;
     this.points = 0;
+    this.textScore = null;
+    this.textTime = null;
   }
 
   // Definimos tres funciones principales:
