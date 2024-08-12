@@ -541,9 +541,60 @@ export function getRandomX () {
 ```js
   game.player.setSize(80, 15).setOffset(10, 70);
 ```
-2. Hacemos lo mismo pero con algunas formúlas matemáticas:
+2. Hacemos lo mismo pero con algunas fórmulas matemáticas:
 ```js
   const { width: wB, height: hB } = game.player; // tamaño de la `basket`
   game.player.setSize(wB * 3 / 4, hB / 6)
     .setOffset(wB / 10, hB * 9 / 10);
+```
+
+## 16. Game UI
+1. En el archivo **main.js**, creamos para el `constructor`, un
+`textScore`:
+
+2. En el archivo **create.js**, asignamos a esa variable un texto:
+```js
+  game.textScore = game.add.text(width - 120, 10, 'Score:0',
+    {
+      font: '25px Arial',
+      fill: '#000000',
+    },
+  );
+```
+3. en la función `targetHit` de **create.js**, ponemos el marcador
+obtenido, reemplazando el `console.log(game.points);`:
+```js
+    game.textScore.setText(`Score:${game.points}`);
+```
+>[!TIP]  
+>En el archivo **create.js**, cambio el orden de creación:
+>1. Creo primero la `apple` para asignar a `game.target`.
+>2. Creo segundo la `basket` para asignar a `game.player`.
+>
+>Esto mejora la visual de mostrar la `apple` dentro de la `basket`.
+
+4. Creo en el `constructor` de **main.js**, la variable:
+`textTime`.
+
+>[!TIP]  
+>Mejoré las variables del constructor assignando un valor inicial:
+>```js
+>  constructor () {
+>    super('scene-game');
+>    this.player = null;
+>    this.cursor = null;
+>    this.playerSpeed = speedDown + 50;
+>    this.target = null;
+>    this.points = 0;
+>    this.textScore = null;
+>    this.textTime = null;
+>  }
+>```
+
+5. En el archivo **create.js**, asigno a la variable un texto:
+```js
+  game.textTime = game.add.text(10, 10, 'Remaining time:00', {
+    font: '25px Arial',
+    fill: '#000000',
+  });
 ```
