@@ -6,7 +6,12 @@ export function createGame (game) {
     game.target.setX(getRandomX()); // `apple` de forma aleatoria
     game.points++;
     game.textScore.setText(`Score:${game.points}`);
+    game.coinMusic.play();
   }
+
+  game.coinMusic = game.sound.add('coin');
+  game.bgMusic = game.sound.add('bgMusic');
+  game.bgMusic.play();
 
   game.add.image(0, 0, 'bg')
     .setOrigin(0, 0); // setOrigin, indica el inicio de la imagen

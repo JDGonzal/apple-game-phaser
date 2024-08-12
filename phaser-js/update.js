@@ -4,6 +4,11 @@ export function updateGame (game) {
   const { left, right } = game.cursor;
   const { height } = game.textures.game.config;
 
+  if (game.gameOver) {
+    game.bgMusic.stop();
+    return;
+  }
+
   game.reamainingTime = game.timedEvent.getRemainingSeconds();
   game.textTime.setText(
     `Remaining time:${Math.round(game.reamainingTime)}`);
