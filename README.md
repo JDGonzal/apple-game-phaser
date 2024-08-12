@@ -620,3 +620,51 @@ nombre: `timedEvent` y `remainingTime`.
   game.textTime.setText(
     `Remaining time:${Math.round(game.reamainingTime)}`);
 ```
+
+## 18. Adding Music/SFX
+1. En el archivo **preload.js**, creamos dos elementos tipo 
+`audio` en la `const` de nombre: `INIT_AUDIOS`:
+```js
+const INIT_AUDIOS = [
+  { key: 'coin', path: '/assets/coin.mp3' },
+  { key: 'bgMusic', path: '/assets/bgMusic.mp3' },
+];
+```
+2. En el archivo **preload.js**, precargamos estos sonidos:
+```js
+  INIT_AUDIOS.forEach(({ key, path }) => {
+    load.audio(key, path);
+  });
+```
+3. Creo dos variables en el `constuctor` de **main.js**:
+```js
+    this.coinMusic = null;
+    this.bgMusic = null;
+```
+4. En el archivo **create.js**, activo los sonidos de estas dos
+variables, justo después de la función `targetHit`:
+```js
+  game.coinMusic = game.sound.add('coin');
+  game.bgMusic = game.sound.add('bgMusic');
+```
+5. Le damos `play` al `bgMusic` en **create.js**:
+```js
+  game.bgMusic.play();
+```
+6. En la función `targetHit` de **create.js**, ponemos el sonido de
+`coin`, en `play`.
+7. Creamos la variable en `construtor`, de nombre `gameOver`,
+la iniciamos en `false`.
+8. En el archivo **utils.js**, la función `gameOver`, llamamos
+la variable y le ponemos en `true`:
+```js
+  this.gameOver = true;
+```
+8. En el archivo **update.js**, antes de los procesos y después 
+de obtener elementos del `game`, ponemos esta condicional:
+```js
+  if (game.gameOver) {
+    game.bgMusic.stop();
+    return;
+  }
+```

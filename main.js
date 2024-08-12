@@ -23,6 +23,9 @@ class GameScene extends Phaser.Scene {
     this.textTime = null;
     this.timedEvent = null;
     this.remainingTime = null;
+    this.coinMusic = null;
+    this.bgMusic = null;
+    this.gameOver = false;
   }
 
   // Definimos tres funciones principales:

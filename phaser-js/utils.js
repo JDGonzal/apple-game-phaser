@@ -4,4 +4,5 @@ export function getRandomX () {
 
 export function gameOver () {
   console.log('Game Over');
+  this.gameOver = true;
 }
