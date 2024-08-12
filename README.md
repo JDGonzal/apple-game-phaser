@@ -598,3 +598,25 @@ obtenido, reemplazando el `console.log(game.points);`:
     fill: '#000000',
   });
 ```
+
+## 17. Creating a timer
+1. En el archivo **utils.js**, creo y esporto una función de 
+nombre `gameOver`.
+2. Creo dos variables en el `constructor` del **main.js**, de
+nombre: `timedEvent` y `remainingTime`.
+3. En el archivo **create.js** importo el `gameOver`.
+4. En el archivo **create.js**, les asigno valores:
+```js
+  game.timedEvent = game.time.delayedCall(10000, gameOver, [], game);
+```
+5. En el archivo **update.js**, justo antes de la condicional
+`if (game.target.y >= height)`, ponemos este código:
+```js
+  game.reamainingTime = game.timedEvent.getRemainingSeconds();
+```
+6. Actualizamos el contador de tiempo en pantalla, en el archivo
+**update.js**:
+```js
+  game.textTime.setText(
+    `Remaining time:${Math.round(game.reamainingTime)}`);
+```
