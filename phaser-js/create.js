@@ -9,6 +9,7 @@ export function createGame (game) {
     game.coinMusic.play();
     game.emitter.start();
   }
+  game.scene.pause('scene-game');
 
   game.coinMusic = game.sound.add('coin');
   game.bgMusic = game.sound.add('bgMusic');
@@ -50,7 +51,15 @@ export function createGame (game) {
   });
 
   game.timedEvent = game.time.delayedCall(30000, gameOver, [], game);
-
+  // game.timedEvent = game.time.addEvent({
+  //   delay: 30000, // Phaser.Math.Between(3000, 6000),
+  //   loop: true,
+  //   repeat: -1,
+  //   callback: gameOver,
+  //   paused: false,
+  //   callbackScope: game,
+  // });
+  console.log(game.timedEvent);
   game.emitter = game.add.particles(0, 0, 'money', {
     speed: 100,
     gravityY: game.playerSpeed - 250,

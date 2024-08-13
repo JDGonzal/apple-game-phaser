@@ -714,10 +714,10 @@ id de nombre `gameEndDiv`, y clase `gameUI` justo debajo del `<canvas...>`:
       <div id="gameStartDiv" class="gameUI">
         <h1>Apple Catcher</h1>
         <p>¡Ud. tiene 30 segundos para atrapar manzanas!</p>
-        <p>Si consigue mas de 10 manzanas Ud. gana</p>
-        <p>Si consigue 10 o menos Ud. pierde</p>
-        <p>Clic en el botón de inicio</p>
-        <button id="gameStartBtn"><p>Start</p></button>
+        <p>Si consigue 10 o mas manzanas Ud. gana</p>
+        <p>Si consigue menos de 10 Ud. pierde</p>
+        <p>Clic en el botón de Inicio</p>
+        <button id="gameStartBtn"><p>Inicio</p></button>
       </div>
 ```
 >[!TIP]  
@@ -728,7 +728,7 @@ id de nombre `gameEndDiv`, y clase `gameUI` justo debajo del `<canvas...>`:
 ```html
       <div id="gameEndDiv" class="gameUI">
         <p>Game Over</p>
-        <h1>Usted <span id="gameWinLoseSpan"></span> </h1>
+        <h1>¡Usted <span id="gameWinLoseSpan"></span> </h1>
         <h1>Puntaje Final: <span id="gameEndScoreSpan"></span></h1>
         <p>Refrescar la página para jugar de nuevo</p>
       </div>
@@ -753,4 +753,109 @@ id de nombre `gameEndDiv`, y clase `gameUI` justo debajo del `<canvas...>`:
 Asi aparece nuestra pantalla en este momento:  
 ![Screen-20](images/2024-08-12_193500.png)
 
+6. Mas en el archivo **style.css**:
+```css
+.gameUI * {
+  text-align: center;
+  margin-top: 5px;
+}
 
+#gameStartDiv {
+  display: flex;
+}
+
+#gameEndDiv{
+  display: none;
+}
+```
+7. Mejoramos la apariencia del botón:
+```css
+#gameStartBtn{
+  display: inline-block;
+  width: 100px;
+  padding:8px 15px;
+  margin: 20px 0;
+  text-align: center;
+  font-family: inherit;
+  border-radius: 10px;
+}
+
+#gameStartBtn p{
+  margin-top:0;
+}
+
+#gameStartBtn:hover{
+  background-color: var(--dkClr);
+  border: 0.5px solid var(--liClr);
+  color: var(--liClr);
+  cursor: pointer;
+}
+```
+8. Aprovechamos los id del **index.html** y los usamos en el
+**main.js** en unas `const`, justo debajo de 
+`const speedDown = 300;`:
+```js
+const gameStartDiv = document.querySelector('#gameStartDiv');
+const gameEndDiv = document.querySelector('#gameEndDiv');
+const gameStartBtn = document.querySelector('#gameStartBtn');
+const gameWinLoseSpan = document.querySelector('#gameWinLoseSpan');
+const gameEndScoreSpan = document.querySelector('#gameEndScoreSpan');
+```
+
+## 21. Win/Lose State
+1. Al final de **main.js**, adicionamos un `addEventListener` para el 
+`gameStartBtn`:
+```js
+gameStartBtn.addEventListener('click', () => {
+  gameStartDiv.style.display = 'none';
+  setTimeout(() => {
+    game.scene.resume('scene-game');
+  }, 1000); // Puede q el `create` demore algo
+});
+```
+2. Pausar la `scene` al principio de la primer función del archivo
+**create.js**, debajo de `targetHit`:
+```js
+  game.scene.pause('scene-game');
+```
+3. En la función `gameOver` del archivo **utils.js**, implementamos
+esto:
+```js
+export function gameOver () {
+  console.log('Game Over');
+  this.gameOver = true;
+  gameEndScoreSpan.textContent = this.points;
+  if (this.points >= 10) {
+    gameWinLoseSpan.textContent = ' Ganó! 😃';
+  } else {
+    gameWinLoseSpan.textContent = ' Perdió! 😔';
+  }
+  gameEndDiv.style.display = 'flex';
+  this.sys.game.destroy(true);
+}
+```
+>[!CAUTION]  
+>Intenté mejorar el juego haciendo una espera de 10 segundos para
+>luego reiniciar todo, incluso poniendo esto en el **create.js**:
+>```js
+>   game.timedEvent = game.time.addEvent({
+>     delay: 30000, // Phaser.Math.Between(3000, 6000),
+>     loop: true,
+>     repeat: -1,
+>     callback: gameOver,
+>     paused: false,
+>     callbackScope: game,
+>   });
+>```
+>Y añadiendo esto al final de la función `gameOver`,
+>en vez del `this.sys.game.destroy(true);`:
+>```js
+>  // this.sys.game.destroy(true);
+>  setTimeout(() => {
+>    gameStartDiv.style.display = 'flex';
+>    gameEndDiv.style.display = 'none';
+>    this.scene.restart();
+>    this.scene.pause('scene-game');
+>  }, 10000);
+>```
+>Pero no halle una solución correcta, lo dejo de forma simple.

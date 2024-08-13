@@ -12,9 +12,12 @@ const sizes = {
 const speedDown = 300;
 
 const gameStartDiv = document.querySelector('#gameStartDiv');
+// eslint-disable-next-line no-unused-vars
 const gameEndDiv = document.querySelector('#gameEndDiv');
 const gameStartBtn = document.querySelector('#gameStartBtn');
+// eslint-disable-next-line no-unused-vars
 const gameWinLoseSpan = document.querySelector('#gameWinLoseSpan');
+// eslint-disable-next-line no-unused-vars
 const gameEndScoreSpan = document.querySelector('#gameEndScoreSpan');
 
 class GameScene extends Phaser.Scene {
@@ -59,3 +62,10 @@ const config = {
 
 // eslint-disable-next-line no-unused-vars
 const game = new Phaser.Game(config);
+
+gameStartBtn.addEventListener('click', () => {
+  gameStartDiv.style.display = 'none';
+  setTimeout(() => {
+    game.scene.resume('scene-game');
+  }, 1000); // Puede q el `create` demore algo
+});
