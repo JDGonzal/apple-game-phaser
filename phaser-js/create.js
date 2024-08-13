@@ -49,7 +49,7 @@ export function createGame (game) {
     fill: '#000000',
   });
 
-  game.timedEvent = game.time.delayedCall(10000, gameOver, [], game);
+  game.timedEvent = game.time.delayedCall(30000, gameOver, [], game);
 
   game.emitter = game.add.particles(0, 0, 'money', {
     speed: 100,

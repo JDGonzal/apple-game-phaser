@@ -697,3 +697,60 @@ Llamamos ese `emitter`:
 ```js
   game.emitter.startFollow(game.player, wB / 2, hB / 2);
 ```
+
+## 20. Start/End Screen Setup
+1. En el archivo **index.html** creamos una división con un 
+id de nombre `gameStartDiv`, y clase `gameUI` justo debajo del `<canvas...>`:
+```html
+      <div id="gameStartDiv" class="gameUI"></div>
+```
+2. En el archivo **index.html** creamos una división con un 
+id de nombre `gameEndDiv`, y clase `gameUI` justo debajo del `<canvas...>`:
+```html
+      <div id="gameEndDiv" class="gameUI"></div>
+```
+3. En el primer `<div...>`, ponemos unas instrucciones:
+```html
+      <div id="gameStartDiv" class="gameUI">
+        <h1>Apple Catcher</h1>
+        <p>¡Ud. tiene 30 segundos para atrapar manzanas!</p>
+        <p>Si consigue mas de 10 manzanas Ud. gana</p>
+        <p>Si consigue 10 o menos Ud. pierde</p>
+        <p>Clic en el botón de inicio</p>
+        <button id="gameStartBtn"><p>Start</p></button>
+      </div>
+```
+>[!TIP]  
+>De una vez corrijo el valor que tengo en `game.timedEvent` de
+>**create.js** de `10000` a `30000`.
+
+4. En el segundo `<div...>`, ponemos la finalización del juego:
+```html
+      <div id="gameEndDiv" class="gameUI">
+        <p>Game Over</p>
+        <h1>Usted <span id="gameWinLoseSpan"></span> </h1>
+        <h1>Puntaje Final: <span id="gameEndScoreSpan"></span></h1>
+        <p>Refrescar la página para jugar de nuevo</p>
+      </div>
+```
+>[!WARNING]  
+>Esto sale algo desorganizado en pantalla, lo siguiente es 
+>hacer unos cambios en el arvhio **style.css**.</
+
+5. En el archivo **style.css**, hacemos estos cambios:
+```css
+.gameUI{
+  width: 100%;
+  height: 100%;
+  background-color: var(--accClr);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 2;
+}
+```
+Asi aparece nuestra pantalla en este momento:  
+![Screen-20](images/2024-08-12_193500.png)
+
+
